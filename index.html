@@ -225,7 +225,7 @@ function prestigeTrophyScore(p){
 }
 
 function highestBrawlerScore(v){return Math.min(v/300,10)}
-function powerScore(v){return Math.min(v,11)}
+function powerScore(v){return Math.min(v/1.1,10)}
 
 function recordPointsScore(v){
  if(v<=10000)return(v/10000)*3;
