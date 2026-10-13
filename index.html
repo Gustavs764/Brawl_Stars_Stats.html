@@ -208,7 +208,10 @@ function showSection(id,button){
 }
 
 /* SCORE FORMULAS */
-function trophyScore(v){return Math.min(Math.floor(v/120),1000)}
+
+function trophyScore(v) {
+    return Math.min(v / 12000, 10);
+}
 function prestigeScore(v){return Math.min(v/10,10)}
 function p2Score(v){return Math.min(v,10)}
 function winsScore(v){return Math.min(v/1000,10)}
