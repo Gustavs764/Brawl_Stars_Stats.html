@@ -1,1270 +1,356 @@
+
 <!DOCTYPE html>
 <html lang="lv">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Gustavs Brawl Stars Account v3.2</title>
-
+<title>Gustavs Brawl Stars Account v3.3</title>
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:
-        radial-gradient(circle at top,#252b55 0%,#111426 42%,#080a12 100%);
-    color:white;
-    min-height:100vh;
-}
-
-header{
-    text-align:center;
-    padding:35px 20px 25px;
-    background:linear-gradient(135deg,#181c38,#252b59);
-    border-bottom:2px solid #3d447d;
-    box-shadow:0 10px 35px rgba(0,0,0,.4);
-}
-
-header h1{
-    font-size:42px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-header p{
-    margin-top:8px;
-    color:#aeb8ff;
-    font-size:16px;
-}
-
-.tabs{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
-    padding:18px;
-    background:#0d1020;
-    position:sticky;
-    top:0;
-    z-index:20;
-}
-
-.tab{
-    border:1px solid #414a83;
-    background:#171b32;
-    color:white;
-    padding:12px 20px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.2s;
-}
-
-.tab:hover,
-.tab.active{
-    background:#5865d9;
-    transform:translateY(-2px);
-    box-shadow:0 7px 20px rgba(88,101,217,.35);
-}
-
-.section{
-    display:none;
-    max-width:1250px;
-    margin:auto;
-    padding:30px 20px 60px;
-}
-
-.section.active{
-    display:block;
-}
-
-.section h2{
-    font-size:30px;
-    margin-bottom:22px;
-}
-
-.hero{
-    text-align:center;
-    padding:25px 0 35px;
-}
-
-.hero h2{
-    font-size:38px;
-    margin-bottom:8px;
-}
-
-.hero .big{
-    font-size:65px;
-    font-weight:900;
-    color:#ffd84d;
-    text-shadow:0 5px 20px rgba(255,216,77,.25);
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:16px;
-}
-
-.card{
-    background:linear-gradient(145deg,#191e38,#101326);
-    border:1px solid #343d70;
-    border-radius:17px;
-    padding:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.22);
-    transition:.2s;
-}
-
-.card:hover{
-    transform:translateY(-4px);
-    border-color:#6875e8;
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
-}
-
-.card .label{
-    color:#8e9be9;
-    font-size:13px;
-    text-transform:uppercase;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.card .value{
-    font-size:27px;
-    font-weight:900;
-}
-
-.card small{
-    display:block;
-    color:#8790b4;
-    margin-top:5px;
-}
-
-.highlight{
-    border:1px solid #e6bd38;
-    background:linear-gradient(145deg,#302b16,#171509);
-}
-
-.highlight .value{
-    color:#ffd84d;
-}
-
-.rank{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.rank img{
-    width:75px;
-    height:75px;
-    object-fit:contain;
-}
-
-.progress-box{
-    margin-top:15px;
-}
-
-.progress{
-    width:100%;
-    height:13px;
-    background:#090b15;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.progress div{
-    height:100%;
-    width:49%;
-    background:linear-gradient(90deg,#5865d9,#8e98ff);
-}
-
-.images-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:22px;
-}
-
-.image-card{
-    background:#12162a;
-    border:1px solid #343d70;
-    border-radius:18px;
-    padding:15px;
-    text-align:center;
-}
-
-.image-card img{
-    width:100%;
-    height:220px;
-    object-fit:contain;
-    background:#090c18;
-    border-radius:13px;
-}
-
-.image-card h3{
-    margin-top:12px;
-}
-
-.image-wrapper{
-    position:relative;
-}
-
-.overlay-number{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    font-size:65px;
-    font-weight:900;
-    color:white;
-    text-shadow:0 3px 8px #000;
-}
-
-.score-card{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-}
-
-.score-number{
-    font-size:28px;
-    font-weight:900;
-    color:#ffd84d;
-}
-
-.score-bar{
-    margin-top:12px;
-    height:9px;
-    border-radius:10px;
-    background:#080a12;
-    overflow:hidden;
-}
-
-.score-bar div{
-    height:100%;
-    background:linear-gradient(90deg,#5865d9,#ffd84d);
-}
-
-.total-score{
-    text-align:center;
-    margin:25px 0;
-    padding:30px;
-    border-radius:20px;
-    background:linear-gradient(145deg,#282e61,#151936);
-    border:2px solid #6975e5;
-}
-
-.total-score .number{
-    font-size:58px;
-    font-weight:900;
-    color:#ffd84d;
-}
-
-.dice-box{
-    max-width:700px;
-    margin:auto;
-    text-align:center;
-    background:linear-gradient(145deg,#191e3b,#0d1020);
-    border:1px solid #414a83;
-    padding:30px;
-    border-radius:22px;
-    box-shadow:0 15px 40px rgba(0,0,0,.3);
-}
-
-.dice{
-    font-size:100px;
-    margin:20px;
-}
-
-.roll-btn{
-    padding:15px 35px;
-    border:0;
-    border-radius:14px;
-    background:#5865d9;
-    color:white;
-    font-size:20px;
-    font-weight:900;
-    cursor:pointer;
-}
-
-.roll-btn:hover{
-    background:#6975e8;
-    transform:scale(1.03);
-}
-
-.roll-btn:disabled{
-    background:#383d58;
-    cursor:not-allowed;
-}
-
-.dice-items{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:12px;
-    margin-top:25px;
-}
-
-.dice-item{
-    background:#11152a;
-    border:1px solid #30375f;
-    border-radius:13px;
-    padding:15px;
-}
-
-.dice-item.done{
-    border-color:#4fd27d;
-}
-
-.result{
-    margin-top:20px;
-    min-height:30px;
-    font-weight:bold;
-    color:#ffd84d;
-}
-
-footer{
-    text-align:center;
-    padding:25px;
-    color:#687198;
-}
-
-@media(max-width:600px){
-    header h1{font-size:30px}
-    .hero .big{font-size:45px}
-    .section h2{font-size:25px}
-}
-
-/* =========================
-   MEME ZONE
-========================= */
-.meme-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:18px;
-}
-
-.meme-card{
-    background:linear-gradient(145deg,#191e38,#101326);
-    border:1px solid #343d70;
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.22);
-    transition:.2s;
-}
-
-.meme-card:hover{
-    transform:translateY(-5px) rotate(-.3deg);
-    border-color:#6875e8;
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
-}
-
-.meme-title{
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:12px;
-}
-
-.meme-text{
-    color:#d7dcff;
-    line-height:1.55;
-    font-size:16px;
-}
-
-.meme-tag{
-    display:inline-block;
-    margin-top:15px;
-    padding:6px 10px;
-    border-radius:9px;
-    background:#242b55;
-    color:#aeb8ff;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.meme-emoji{
-    font-size:48px;
-    margin-bottom:10px;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top,#252b55 0%,#111426 42%,#080a12 100%);color:white;min-height:100vh}
+header{text-align:center;padding:35px 20px 25px;background:linear-gradient(135deg,#181c38,#252b59);border-bottom:2px solid #3d447d;box-shadow:0 10px 35px #0006}
+header h1{font-size:42px;font-weight:900;letter-spacing:1px}
+header p{margin-top:8px;color:#aeb8ff;font-size:16px}
+.tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:18px;background:#0d1020;position:sticky;top:0;z-index:20}
+.tab{border:1px solid #414a83;background:#171b32;color:white;padding:12px 20px;border-radius:12px;cursor:pointer;font-weight:bold;transition:.2s}
+.tab:hover,.tab.active{background:#5865d9;transform:translateY(-2px);box-shadow:0 7px 20px #5865d959}
+.section{display:none;max-width:1250px;margin:auto;padding:30px 20px 60px}
+.section.active{display:block}
+.section h2{font-size:30px;margin-bottom:22px}
+.hero{text-align:center;padding:25px 0 35px}
+.hero h2{font-size:38px;margin-bottom:8px}
+.hero .big{font-size:65px;font-weight:900;color:#ffd84d;text-shadow:0 5px 20px #ffd84d40}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:linear-gradient(145deg,#191e38,#101326);border:1px solid #343d70;border-radius:17px;padding:20px;box-shadow:0 10px 25px #0004;transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:#6875e8;box-shadow:0 15px 35px #0006}
+.card .label{color:#8e9be9;font-size:13px;text-transform:uppercase;font-weight:bold;margin-bottom:8px}
+.card .value{font-size:27px;font-weight:900}
+.card small{display:block;color:#8790b4;margin-top:5px}
+.highlight{border:1px solid #e6bd38;background:linear-gradient(145deg,#302b16,#171509)}
+.highlight .value{color:#ffd84d}
+.rank{display:flex;align-items:center;gap:15px}
+.rank img{width:75px;height:75px;object-fit:contain}
+.progress-box{margin-top:15px}
+.progress{width:100%;height:13px;background:#090b15;border-radius:20px;overflow:hidden}
+.progress div{height:100%;width:49%;background:linear-gradient(90deg,#5865d9,#8e98ff)}
+.images-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.image-card{background:#12162a;border:1px solid #343d70;border-radius:18px;padding:15px;text-align:center}
+.image-card img{width:100%;height:220px;object-fit:contain;background:#090c18;border-radius:13px}
+.image-card h3{margin-top:12px}
+.image-wrapper{position:relative}
+.overlay-number{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:65px;font-weight:900;color:white;text-shadow:0 3px 8px #000}
+.score-card{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.score-number{font-size:28px;font-weight:900;color:#ffd84d;white-space:nowrap}
+.score-bar{margin-top:12px;height:9px;border-radius:10px;background:#080a12;overflow:hidden}
+.score-bar div{height:100%;background:linear-gradient(90deg,#5865d9,#ffd84d)}
+.total-score{text-align:center;margin:25px 0;padding:30px;border-radius:20px;background:linear-gradient(145deg,#282e61,#151936);border:2px solid #6975e5}
+.total-score .number{font-size:58px;font-weight:900;color:#ffd84d}
+.total-score small{display:block;color:#aeb8ff;margin-top:8px}
+.dice-box{max-width:700px;margin:auto;text-align:center;background:linear-gradient(145deg,#191e3b,#0d1020);border:1px solid #414a83;padding:30px;border-radius:22px;box-shadow:0 15px 40px #0005}
+.dice{font-size:100px;margin:20px}
+.roll-btn{padding:15px 35px;border:0;border-radius:14px;background:#5865d9;color:white;font-size:20px;font-weight:900;cursor:pointer}
+.roll-btn:hover{background:#6975e8;transform:scale(1.03)}
+.roll-btn:disabled{background:#383d58;cursor:not-allowed}
+.dice-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:25px}
+.dice-item{background:#11152a;border:1px solid #30375f;border-radius:13px;padding:15px}
+.dice-item.done{border-color:#4fd27d}
+.result{margin-top:20px;min-height:30px;font-weight:bold;color:#ffd84d}
+.meme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.meme-card{background:linear-gradient(145deg,#191e38,#101326);border:1px solid #343d70;border-radius:18px;padding:20px;box-shadow:0 10px 25px #0004;transition:.2s}
+.meme-card:hover{transform:translateY(-5px) rotate(-.3deg);border-color:#6875e8}
+.meme-title{font-size:22px;font-weight:900;margin-bottom:12px}
+.meme-text{color:#d7dcff;line-height:1.55;font-size:16px}
+.meme-tag{display:inline-block;margin-top:15px;padding:6px 10px;border-radius:9px;background:#242b55;color:#aeb8ff;font-size:12px;font-weight:bold}
+.meme-emoji{font-size:48px;margin-bottom:10px}
+footer{text-align:center;padding:25px;color:#687198}
+@media(max-width:600px){header h1{font-size:30px}.hero .big{font-size:45px}.section h2{font-size:25px}.tabs{position:static}.total-score .number{font-size:44px}.card .value{font-size:24px}}
 </style>
 </head>
-
 <body>
 
 <header>
-    <h1>Gustavs Brawl Stars</h1>
-    <p>Gustavs Brawl Stars Account v3.2</p>
+<h1>Gustavs Brawl Stars</h1>
+<p>Gustavs Brawl Stars Account v3.3 · Updated 13.10.2026</p>
 </header>
 
 <nav class="tabs">
-    <button class="tab active" onclick="showSection('home',this)">🏠 Home</button>
-    <button class="tab" onclick="showSection('stats',this)">📊 Account Stats</button>
-    <button class="tab" onclick="showSection('scores',this)">🏆 Scores</button>
-    <button class="tab" onclick="showSection('images',this)">🖼️ Images</button>
-    <button class="tab" onclick="showSection('dice',this)">🎲 Dice Game</button>
-    <button class="tab" onclick="showSection('memes',this)">😂 Memes</button>
+<button class="tab active" onclick="showSection('home',this)">🏠 Home</button>
+<button class="tab" onclick="showSection('stats',this)">📊 Account Stats</button>
+<button class="tab" onclick="showSection('scores',this)">🏆 Scores</button>
+<button class="tab" onclick="showSection('images',this)">🖼️ Images</button>
+<button class="tab" onclick="showSection('dice',this)">🎲 Dice Game</button>
+<button class="tab" onclick="showSection('memes',this)">😂 Memes</button>
 </nav>
 
-<!-- HOME -->
 <section id="home" class="section active">
-
-    <div class="hero">
-        <h2>🏆 Gustavs Brawl Stars</h2>
-        <div class="big">93,569</div>
-        <p>Trophies</p>
-    </div>
-
-    <div class="grid">
-
-        <div class="card highlight">
-            <div class="label">🔥 Total Prestige</div>
-            <div class="value">63</div>
-        </div>
-
-        <div class="card">
-            <div class="label">🏅 Prestige Trophies</div>
-            <div class="value">14,202</div>
-        </div>
-
-        <div class="card">
-            <div class="label">🎮 Total Wins</div>
-            <div class="value">7,616</div>
-        </div>
-
-        <div class="card">
-            <div class="label">📈 Winrate</div>
-            <div class="value">63.12%</div>
-        </div>
-
-        <div class="card">
-            <div class="label">⚡ Win Streak</div>
-            <div class="value">31</div>
-        </div>
-
-        <div class="card">
-            <div class="label">👤 Brawlers</div>
-            <div class="value">107/107</div>
-        </div>
-
-    </div>
+<div class="hero">
+<h2>🏆 Gustavs Brawl Stars</h2>
+<div class="big">94,336</div>
+<p>Trophies</p>
+</div>
+<div class="grid">
+<div class="card highlight"><div class="label">🔥 Total Prestige</div><div class="value">65</div></div>
+<div class="card"><div class="label">🏅 Prestige Trophies</div><div class="value">14,981</div></div>
+<div class="card"><div class="label">🎮 Total Wins</div><div class="value">7,669</div></div>
+<div class="card"><div class="label">📈 Winrate</div><div class="value">63.32%</div></div>
+<div class="card"><div class="label">⚡ Win Streak</div><div class="value">31</div></div>
+<div class="card"><div class="label">👤 Brawlers</div><div class="value">107/107</div></div>
+</div>
 </section>
 
-
-<!-- STATS -->
 <section id="stats" class="section">
-
 <h2>📊 Account Stats</h2>
-
 <div class="grid">
-
-<div class="card highlight">
-<div class="label">🏆 Trophies</div>
-<div class="value">93,569</div>
+<div class="card highlight"><div class="label">🏆 Trophies</div><div class="value">94,336</div></div>
+<div class="card"><div class="label">🔥 Total Prestige</div><div class="value">65</div></div>
+<div class="card"><div class="label">🏅 Prestige Trophies</div><div class="value">14,981</div></div>
+<div class="card"><div class="label">👑 Prestige 2 Brawlers</div><div class="value">6</div></div>
+<div class="card"><div class="label">⭐ Prestiged Brawlers</div><div class="value">59</div><small>out of 107</small></div>
+<div class="card"><div class="label">👤 Total Brawlers</div><div class="value">107/107</div></div>
+<div class="card"><div class="label">🎮 Total Wins</div><div class="value">7,669</div></div>
+<div class="card"><div class="label">🎯 3v3 Wins</div><div class="value">4,111</div></div>
+<div class="card"><div class="label">🟡 Solo Showdown Wins</div><div class="value">1,172</div></div>
+<div class="card"><div class="label">🔵 Duo/Trio Showdown Wins</div><div class="value">2,386</div></div>
+<div class="card"><div class="label">⏱️ Hours Spent</div><div class="value">751</div></div>
+<div class="card"><div class="label">⚔️ Wins per Hour</div><div class="value">10.2</div></div>
+<div class="card"><div class="label">👕 Skins Unlocked</div><div class="value">501</div></div>
+<div class="card"><div class="label">💰💎 Account Value/Gems</div><div class="value">253,266</div></div>
+<div class="card"><div class="label">🧠 XP Level</div><div class="value">179</div></div>
+<div class="card"><div class="label">✨ XP Points</div><div class="value">165,326</div></div>
+<div class="card"><div class="label">🏅 Record Level</div><div class="value">6</div></div>
+<div class="card"><div class="label">🏆 Record Points</div><div class="value">35,170</div></div>
+<div class="card"><div class="label">⚡ Highest Win Streak</div><div class="value">31</div><small>Frank</small></div>
+<div class="card"><div class="label">📊 Progression</div><div class="value">49%</div><div class="progress-box"><div class="progress"><div></div></div></div></div>
+<div class="card"><div class="label">🌌 Fame</div><div class="value">Solar Fame 2</div></div>
+<div class="card"><div class="label">💠 Credits in Fame</div><div class="value">71,316</div></div>
+<div class="card"><div class="label">📈 Winrate</div><div class="value">63.32%</div></div>
+<div class="card"><div class="label">🧠 Average Power Level</div><div class="value">8.6</div></div>
+<div class="card"><div class="label">👑 Highest Trophy Brawler</div><div class="value">Kaze</div><small>2,055 trophies</small></div>
+<div class="card"><div class="label">🏆 Highest Ranked ELO</div><div class="value">4,702</div><small>Mythic I — 3 times</small></div>
+<div class="card"><div class="label">📅 Account Created</div><div class="value">20.09.2024</div></div>
+<div class="card"><div class="label">🗓️ Account Age</div><div class="value">2 years 23 days</div></div>
 </div>
-
-<div class="card">
-<div class="label">🔥 Total Prestige</div>
-<div class="value">63</div>
-</div>
-
-<div class="card">
-<div class="label">🏅 Prestige Trophies</div>
-<div class="value">14,202</div>
-</div>
-
-<div class="card">
-<div class="label">👑 Prestige 2 Brawlers</div>
-<div class="value">4</div>
-</div>
-
-<div class="card">
-<div class="label">⭐ Prestiged Brawlers</div>
-<div class="value">59</div>
-<small>out of 106</small>
-</div>
-
-<div class="card">
-<div class="label">👤 Total Brawlers</div>
-<div class="value">107/107</div>
-</div>
-
-<div class="card">
-<div class="label">🎮 Total Wins</div>
-<div class="value">7,616</div>
-</div>
-
-<div class="card">
-<div class="label">🎯 3v3 Wins</div>
-<div class="value">4,098</div>
-</div>
-
-<div class="card">
-<div class="label">🟡 Solo Showdown Wins</div>
-<div class="value">1,140</div>
-</div>
-
-<div class="card">
-<div class="label">🔵 Duo/Trio Showdown Wins</div>
-<div class="value">2,378</div>
-</div>
-
-<div class="card">
-<div class="label">⏱️ Hours Spent</div>
-<div class="value">745</div>
-</div>
-
-<div class="card">
-<div class="label">⚔️ Wins per Hour</div>
-<div class="value">10.2</div>
-</div>
-
-<div class="card">
-<div class="label">👕 Skins Unlocked</div>
-<div class="value">496</div>
-</div>
-
-<div class="card">
-<div class="label">💰💎 Account Value/Gems</div>
-<div class="value">250,734</div>
-</div>
-
-<div class="card">
-<div class="label">🧠 XP Level</div>
-<div class="value">178</div>
-</div>
-
-<div class="card">
-<div class="label">✨ XP Points</div>
-<div class="value">163,881</div>
-</div>
-
-<div class="card">
-<div class="label">🏅 Record Level</div>
-<div class="value">6</div>
-</div>
-
-<div class="card">
-<div class="label">🏆 Record Points</div>
-<div class="value">34,570</div>
-</div>
-
-<div class="card">
-<div class="label">⚡ Highest Win Streak</div>
-<div class="value">31</div>
-<small>Frank</small>
-</div>
-
-<div class="card">
-<div class="label">📊 Progression</div>
-<div class="value">49%</div>
-<div class="progress-box">
-<div class="progress"><div></div></div>
-</div>
-</div>
-
-<div class="card">
-<div class="label">🌌 Fame</div>
-<div class="value">Solar Fame 1</div>
-</div>
-
-<div class="card">
-<div class="label">💠 Credits in Fame</div>
-<div class="value">65,006</div>
-</div>
-
-<div class="card">
-<div class="label">📈 Winrate</div>
-<div class="value">63.12%</div>
-</div>
-
-<div class="card">
-<div class="label">🧠 Average Power Level</div>
-<div class="value">8.5</div>
-</div>
-
-<div class="card">
-<div class="label">👑 Highest Trophy Brawler</div>
-<div class="value">Kaze</div>
-<small>2,055 trophies</small>
-</div>
-
-<div class="card">
-<div class="label">🏆 Highest Ranked ELO</div>
-<div class="value">4,702</div>
-<small>Mythic 1 — 3 times</small>
-</div>
-
-<div class="card">
-<div class="label">📅 Account Created</div>
-<div class="value">20.09.2024</div>
-</div>
-
-<div class="card">
-<div class="label">🗓️ Account Age</div>
-<div class="value">2 years 17 days</div>
-</div>
-
-</div>
-
 <br>
-
 <div class="card highlight">
 <div class="rank">
-<img src="https://cdn.brawlytix.com/assets/ranked/58000012.png">
-<div>
-<div class="label">Current / Highest Rank</div>
-<div class="value">Mythic 1</div>
+<img src="https://cdn.brawlytix.com/assets/ranked/58000012.png" alt="Mythic 1">
+<div><div class="label">Current / Highest Rank</div><div class="value">Mythic 1</div></div>
 </div>
 </div>
-</div>
-
 </section>
 
-
-<!-- SCORES -->
 <section id="scores" class="section">
-
 <h2>🏆 Account Scores</h2>
-
+<p style="color:#aeb8ff;line-height:1.5">Katrs kritērijs tiek parādīts atsevišķi. Kopējais Score ir visu 17 kritēriju vidējais.</p>
 <div class="total-score">
 <div>Total Account Score</div>
 <div class="number" id="totalScore">0.00/10</div>
+<small id="scoreCount"></small>
 </div>
-
 <div class="grid" id="scoreGrid"></div>
-
 </section>
 
-
-<!-- IMAGES -->
 <section id="images" class="section">
-
 <h2>🖼️ Account Images</h2>
-
 <div class="images-grid">
-
-<div class="image-card">
-<div class="image-wrapper">
-<img src="https://cdn.brawlytix.com/assets/ranked/58000012.png" alt="Mythic 1">
-</div>
-<h3>🟣 Mythic 1</h3>
-</div>
-
-<div class="image-card">
-<div class="image-wrapper">
-<img src="https://cdn.brawlytix.com/fame/solar1.webp" alt="Solar Fame 1">
-</div>
-<h3>☀️ Solar Fame 1</h3>
-</div>
-
-<div class="image-card">
-<div class="image-wrapper">
-<img src="https://cdn.brawlytix.com/assets/ranked/58000021.png" alt="Pro Rank">
-</div>
-<h3>🏆 Pro Rank</h3>
-</div>
-
-<div class="image-card">
-<div class="image-wrapper">
-<img src="https://cdn.brawlytix.com/skins/29001401.webp" alt="Sirius">
-</div>
-<h3>🌟 Sirius Base Skin</h3>
-</div>
-
-<div class="image-card">
-<div class="image-wrapper">
-<img src="https://cdn.brawlytix.com/prestige/total.webp" alt="Total Prestige">
-<div class="overlay-number">63</div>
-</div>
-<h3>🔥 Total Prestige</h3>
-</div>
-
-<div class="image-card">
-<div class="image-wrapper">
-<img src="https://cdn.brawlytix.com/skins/29001481.webp" alt="Sirius True Gold Skin">
-</div>
-<h3>👑 Sirius True Gold Skin</h3>
-</div>
-
+<div class="image-card"><div class="image-wrapper"><img src="https://cdn.brawlytix.com/assets/ranked/58000012.png" alt="Mythic 1"></div><h3>🟣 Mythic 1</h3></div>
+<div class="image-card"><div class="image-wrapper"><img src="https://cdn.brawlytix.com/fame/solar2.webp" alt="Solar Fame 2"></div><h3>☀️ Solar Fame 2</h3></div>
+<div class="image-card"><div class="image-wrapper"><img src="https://cdn.brawlytix.com/assets/ranked/58000021.png" alt="Pro Rank"></div><h3>🏆 Pro Rank</h3></div>
+<div class="image-card"><div class="image-wrapper"><img src="https://cdn.brawlytix.com/skins/29001401.webp" alt="Sirius"></div><h3>🌟 Sirius Base Skin</h3></div>
+<div class="image-card"><div class="image-wrapper"><img src="https://cdn.brawlytix.com/prestige/total.webp" alt="Total Prestige"><div class="overlay-number">65</div></div><h3>🔥 Total Prestige</h3></div>
+<div class="image-card"><div class="image-wrapper"><img src="https://cdn.brawlytix.com/skins/29001481.webp" alt="Sirius True Gold Skin"></div><h3>👑 Sirius True Gold Skin</h3></div>
 </div>
 </section>
 
-
-<!-- DICE GAME -->
 <section id="dice" class="section">
-
 <h2>🎲 Dice Game</h2>
-
 <div class="dice-box">
-
 <h2>ROLL THE DICE!</h2>
-
 <div class="dice" id="diceNumber">🎲 1</div>
-
-<p>Rolls left: <b id="rollsLeft">10</b></p>
-
-<br>
-
-<button class="roll-btn" id="rollButton" onclick="rollDice()">
-ROLL DICE
-</button>
-
-<div class="result" id="resultText">
-Good luck! 🎲
-</div>
-
+<p>Rolls left: <b id="rollsLeft">10</b></p><br>
+<button class="roll-btn" id="rollButton" onclick="rollDice()">ROLL DICE</button>
+<div class="result" id="resultText">Good luck! 🎲</div>
 <div class="dice-items">
-
-<div class="dice-item" id="item-mythic">
-🟣 Mythic
-<br>
-<span>0 / 3</span>
+<div class="dice-item" id="item-mythic">🟣 Mythic<br><span>0 / 3</span></div>
+<div class="dice-item" id="item-fame">🪐 Saturnian Fame 2<br><span>0 / 1</span></div>
+<div class="dice-item" id="item-prestige">🔥 Total Prestige<br><span>0 / 2</span></div>
+<div class="dice-item" id="item-pro">🏆 Pro Rank<br><span>0 / 1</span></div>
+<div class="dice-item" id="item-sirius">🌟 Sirius Base Skin<br><span>0 / 2</span></div>
+<div class="dice-item" id="item-p3">🏅 Prestige 3<br><span>0 / 1</span></div>
 </div>
-
-<div class="dice-item" id="item-fame">
-🪐 Saturnian Fame 2
-<br>
-<span>0 / 1</span>
-</div>
-
-<div class="dice-item" id="item-prestige">
-🔥 Total Prestige
-<br>
-<span>0 / 2</span>
-</div>
-
-<div class="dice-item" id="item-pro">
-🏆 Pro Rank
-<br>
-<span>0 / 1</span>
-</div>
-
-<div class="dice-item" id="item-sirius">
-🌟 Sirius Base Skin
-<br>
-<span>0 / 2</span>
-</div>
-
-<div class="dice-item" id="item-p3">
-🏅 Prestige 3
-<br>
-<span>0 / 1</span>
-</div>
-
-</div>
-
 </div>
 </section>
 
-
-<!-- MEMES -->
 <section id="memes" class="section">
-
 <h2>😂 Brawl Stars Meme Zone</h2>
-
-<p style="color:#8f9be2;margin-top:-12px;margin-bottom:22px;">
-General Brawl Stars memes — no account stats needed 😭
-</p>
-
+<p style="color:#8f9be2;margin-top:-12px;margin-bottom:22px">General Brawl Stars memes — no account stats needed 😭</p>
 <div class="meme-grid">
-
-<div class="meme-card">
-    <div class="meme-emoji">🗿</div>
-    <div class="meme-title">Random Teammate Technology</div>
-    <div class="meme-text">
-        Me: <b>"Just pass the ball."</b><br>
-        Teammate: walks past the ball, shoots the wall, spins twice and dies.
-    </div>
-    <span class="meme-tag">RANDOM TEAMMATES</span>
-</div>
-
-<div class="meme-card">
-    <div class="meme-emoji">🏹</div>
-    <div class="meme-title">Edgar Experience</div>
-    <div class="meme-text">
-        Edgar for 20 seconds: hiding.<br>
-        Edgar when his Super is ready: <b>"I AM HIM."</b><br>
-        Edgar 2 seconds later: 💀
-    </div>
-    <span class="meme-tag">EDGAR</span>
-</div>
-
-<div class="meme-card">
-    <div class="meme-emoji">⚽</div>
-    <div class="meme-title">Open Goal Simulator</div>
-    <div class="meme-text">
-        The goal is completely open.<br>
-        The ball is right next to me.<br>
-        My teammate: <b>"Let me shoot this enemy instead."</b> 😭
-    </div>
-    <span class="meme-tag">BRAWL BALL</span>
-</div>
-
-<div class="meme-card">
-    <div class="meme-emoji">🎯</div>
-    <div class="meme-title">Ranked Draft</div>
-    <div class="meme-text">
-        Team: picks three completely different roles.<br>
-        Enemy: perfect composition.<br>
-        Everyone after losing: <b>"bad matchmaking"</b> 😭
-    </div>
-    <span class="meme-tag">RANKED</span>
-</div>
-
-<div class="meme-card">
-    <div class="meme-emoji">🎁</div>
-    <div class="meme-title">Starr Drop Luck</div>
-    <div class="meme-text">
-        Game: <b>"Here is your reward!"</b><br>
-        Me: opens it with maximum confidence.<br>
-        Reward: 🪙 <b>something I didn't want</b>
-    </div>
-    <span class="meme-tag">STARR DROPS</span>
-</div>
-
-<div class="meme-card">
-    <div class="meme-emoji">💀</div>
-    <div class="meme-title">Showdown Logic</div>
-    <div class="meme-text">
-        Me: peacefully collecting cubes.<br>
-        Player 1: attacks me.<br>
-        Player 2: attacks Player 1.<br>
-        Player 3: somehow attacks everyone.
-    </div>
-    <span class="meme-tag">SHOWDOWN</span>
-</div>
-
-<div class="meme-card">
-    <div class="meme-emoji">💣</div>
-    <div class="meme-title">Heist Teammate Math</div>
-    <div class="meme-text">
-        Enemy safe: <b>5%</b> HP.<br>
-        Our safe: <b>8%</b> HP.<br>
-        Teammate: leaves the safe to chase one enemy across the entire map. 😭
-    </div>
-    <span class="meme-tag">HEIST</span>
-</div>
-
-<div class="meme-card">
-    <div class="meme-emoji">📡</div>
-    <div class="meme-title">Lag Boss Fight</div>
-    <div class="meme-text">
-        Me: presses attack.<br>
-        Game: <b>"Sure, I'll process that in 4 business days."</b><br>
-        Enemy: already behind me. 💀
-    </div>
-    <span class="meme-tag">LAG</span>
-</div>
-
-<div class="meme-card">
-    <div class="meme-emoji">🛒</div>
-    <div class="meme-title">Shop Psychology</div>
-    <div class="meme-text">
-        Me: <b>"I don't need anything."</b><br>
-        Shop: shows one skin I actually like.<br>
-        Me: <b>"TAKE MY GEMS."</b> 💎
-    </div>
-    <span class="meme-tag">SHOP</span>
-</div>
-
+<div class="meme-card"><div class="meme-emoji">🗿</div><div class="meme-title">Random Teammate Technology</div><div class="meme-text">Me: <b>"Just pass the ball."</b><br>Teammate: walks past the ball, shoots the wall, spins twice and dies.</div><span class="meme-tag">RANDOM TEAMMATES</span></div>
+<div class="meme-card"><div class="meme-emoji">🏹</div><div class="meme-title">Edgar Experience</div><div class="meme-text">Edgar for 20 seconds: hiding.<br>Edgar when his Super is ready: <b>"I AM HIM."</b><br>Edgar 2 seconds later: 💀</div><span class="meme-tag">EDGAR</span></div>
+<div class="meme-card"><div class="meme-emoji">⚽</div><div class="meme-title">Open Goal Simulator</div><div class="meme-text">The goal is completely open.<br>The ball is right next to me.<br>My teammate: <b>"Let me shoot this enemy instead."</b> 😭</div><span class="meme-tag">BRAWL BALL</span></div>
+<div class="meme-card"><div class="meme-emoji">🎯</div><div class="meme-title">Ranked Draft</div><div class="meme-text">Team: picks three completely different roles.<br>Enemy: perfect composition.<br>Everyone after losing: <b>"bad matchmaking"</b> 😭</div><span class="meme-tag">RANKED</span></div>
+<div class="meme-card"><div class="meme-emoji">🎁</div><div class="meme-title">Starr Drop Luck</div><div class="meme-text">Game: <b>"Here is your reward!"</b><br>Me: opens it with maximum confidence.<br>Reward: 🪙 <b>something I didn't want</b></div><span class="meme-tag">STARR DROPS</span></div>
+<div class="meme-card"><div class="meme-emoji">💀</div><div class="meme-title">Showdown Logic</div><div class="meme-text">Me: peacefully collecting cubes.<br>Player 1: attacks me.<br>Player 2: attacks Player 1.<br>Player 3: somehow attacks everyone.</div><span class="meme-tag">SHOWDOWN</span></div>
+<div class="meme-card"><div class="meme-emoji">💣</div><div class="meme-title">Heist Teammate Math</div><div class="meme-text">Enemy safe: <b>5%</b> HP.<br>Our safe: <b>8%</b> HP.<br>Teammate: leaves the safe to chase one enemy across the entire map. 😭</div><span class="meme-tag">HEIST</span></div>
+<div class="meme-card"><div class="meme-emoji">📡</div><div class="meme-title">Lag Boss Fight</div><div class="meme-text">Me: presses attack.<br>Game: <b>"Sure, I'll process that in 4 business days."</b><br>Enemy: already behind me. 💀</div><span class="meme-tag">LAG</span></div>
+<div class="meme-card"><div class="meme-emoji">🛒</div><div class="meme-title">Shop Psychology</div><div class="meme-text">Me: <b>"I don't need anything."</b><br>Shop: shows one skin I actually like.<br>Me: <b>"TAKE MY GEMS."</b> 💎</div><span class="meme-tag">SHOP</span></div>
 </div>
 </section>
 
-
-<footer>
-Gustavs Brawl Stars Account v3.2
-</footer>
-
+<footer>Gustavs Brawl Stars Account v3.3 · Updated 13.10.2026</footer>
 
 <script>
-
-/* =========================
-   TABS
-========================= */
-
 function showSection(id,button){
-
-    document.querySelectorAll(".section").forEach(section=>{
-        section.classList.remove("active");
-    });
-
-    document.querySelectorAll(".tab").forEach(tab=>{
-        tab.classList.remove("active");
-    });
-
-    document.getElementById(id).classList.add("active");
-
-    if(button){
-        button.classList.add("active");
-    }
+ document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+ document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ if(button)button.classList.add("active");
 }
 
-
-/* =========================
-   SCORES
-========================= */
-
-function trophyScore(v){
-    return Math.min(v/15000,10);
-}
-
-function prestigeScore(v){
-    return Math.min(v/10,10);
-}
-
-function p2Score(v){
-    return Math.min(v,10);
-}
-
-function winsScore(v){
-    return Math.min(v/1000,10);
-}
-
-function hoursScore(v){
-    return Math.min(v/100,10);
-}
-
-function winsHourScore(v){
-    return Math.min(v/2,10);
-}
-
-function accountValueScore(v){
-    return Math.min(v/30000,10);
-}
-
-function prestigedBrawlersScore(v){
-    return Math.min(v/10,10);
-}
+/* SCORE FORMULAS */
+function trophyScore(v){return Math.min(Math.floor(v/1000),10)}
+function prestigeScore(v){return Math.min(v/10,10)}
+function p2Score(v){return Math.min(v,10)}
+function winsScore(v){return Math.min(v/1000,10)}
+function hoursScore(v){return Math.min(v/100,10)}
+function winsHourScore(v){return Math.min(v/2,10)}
+function accountValueScore(v){return Math.min(v/20000,10)}
+function prestigedBrawlersScore(v){return Math.min(v/10,10)}
 
 function prestigeTrophyScore(p){
-
-    if(p<=5000){
-        return (p/5000)*3.25;
-    }
-
-    if(p<=10000){
-        return 3.25+((p-5000)/5000)*3.25;
-    }
-
-    return Math.min(
-        6.5+((p-10000)/5000)*0.5,
-        10
-    );
+ if(p<=5000)return(p/5000)*3.25;
+ if(p<=10000)return 3.25+((p-5000)/5000)*3.25;
+ return Math.min(6.5+((p-10000)/5000)*0.5,10);
 }
 
-function highestBrawlerScore(v){
-    return Math.min(v/300,10);
-}
-
-function powerScore(v){
-    /* Existing account scoring */
-    return 7.82;
-}
+function highestBrawlerScore(v){return Math.min(v/300,10)}
+function powerScore(v){return Math.min(v,10)}
 
 function recordPointsScore(v){
-
-    if(v<=10000){
-        return (v/10000)*3;
-    }
-
-    if(v<=20000){
-        return 3+((v-10000)/10000)*3;
-    }
-
-    return Math.min(
-        6+((v-20000)/10000)*0.8,
-        10
-    );
+ if(v<=10000)return(v/10000)*3;
+ if(v<=20000)return 3+((v-10000)/10000)*3;
+ return Math.min(6+((v-20000)/10000)*0.8,10);
 }
 
-function streakScore(v){
-    return Math.min(v/5,10);
-}
-
-function skinsScore(v){
-    return Math.min(v/80,10);
-}
-
-function progressionScore(v){
-    return Math.min(v/8,10);
-}
+function streakScore(v){return Math.min(v/5,10)}
+function skinsScore(v){return Math.min(v/80,10)}
+function progressionScore(v){return Math.min(v/8,10)}
 
 function winrateScore(v){
-
-    if(v<=10) return 1.25;
-    if(v<=20) return 2.50;
-    if(v<=30) return 3.75;
-    if(v<=40) return 5.00;
-    if(v<=50) return 6.25;
-    if(v<=60) return 7.50;
-
-    return Math.min(
-        7.50+(v-60)*0.0125,
-        10
-    );
+ if(v<=10)return 1.25;
+ if(v<=20)return 2.5;
+ if(v<=30)return 3.75;
+ if(v<=40)return 5;
+ if(v<=50)return 6.25;
+ if(v<=60)return 7.5;
+ return Math.min(7.5+(v-60)*0.125,10);
 }
 
-function eloScore(v){
-    return Math.min(v/1000,10);
-}
+function eloScore(v){return Math.min(v/1000,10)}
 
-
-/* UPDATED STATS */
-
-const scores = [
-
-    ["🏆 Total Trophies", trophyScore(93569)],
-    ["🔥 Prestige", prestigeScore(63)],
-    ["👑 Prestige 2 Brawlers", p2Score(4)],
-    ["🎮 Total Wins", winsScore(7616)],
-    ["⏱️ Hours Spent", hoursScore(745)],
-    ["⚔️ Wins per Hour", winsHourScore(10.2)],
-    ["💰 Account Value", accountValueScore(250734)],
-    ["⭐ Prestiged Brawlers", prestigedBrawlersScore(59)],
-    ["🏅 Prestige Trophies", prestigeTrophyScore(14202)],
-    ["👑 Highest Trophy Brawler", highestBrawlerScore(2055)],
-    ["🧠 Average Power Level", powerScore(8.5)],
-    ["🏆 Record Points", recordPointsScore(34570)],
-    ["⚡ Highest Win Streak", streakScore(31)],
-    ["👕 Total Skins", skinsScore(496)],
-    ["📊 Progression", progressionScore(49)],
-    ["📈 Winrate", winrateScore(63.12)],
-    ["🏆 Highest Ranked ELO", eloScore(4702)]
-
+const scores=[
+ ["🏆 Total Trophies",trophyScore(94336)],
+ ["🔥 Prestige",prestigeScore(65)],
+ ["👑 Prestige 2 Brawlers",p2Score(6)],
+ ["🎮 Total Wins",winsScore(7669)],
+ ["⏱️ Hours Spent",hoursScore(751)],
+ ["⚔️ Wins per Hour",winsHourScore(10.2)],
+ ["💰💎 Account Value/Gems",accountValueScore(253266)],
+ ["⭐ Prestiged Brawlers",prestigedBrawlersScore(59)],
+ ["🏅 Prestige Trophies",prestigeTrophyScore(14981)],
+ ["👑 Highest Trophy Brawler",highestBrawlerScore(2055)],
+ ["🧠 Average Power Level",powerScore(8.6)],
+ ["🏆 Record Points",recordPointsScore(35170)],
+ ["⚡ Highest Win Streak",streakScore(31)],
+ ["👕 Total Skins",skinsScore(501)],
+ ["📊 Progression",progressionScore(49)],
+ ["📈 Winrate",winrateScore(63.32)],
+ ["🏆 Highest Ranked ELO",eloScore(4702)]
 ];
 
 const scoreGrid=document.getElementById("scoreGrid");
-
 let total=0;
 
-scores.forEach(item=>{
-
-    const name=item[0];
-    const score=Math.min(item[1],10);
-
-    total+=score;
-
-    const card=document.createElement("div");
-
-    card.className="card score-card";
-
-    card.innerHTML=`
-
-        <div style="flex:1">
-
-            <div class="label">${name}</div>
-
-            <div class="score-bar">
-                <div style="width:${score*10}%"></div>
-            </div>
-
-        </div>
-
-        <div class="score-number">
-            ${score.toFixed(2)}
-        </div>
-    `;
-
-    scoreGrid.appendChild(card);
-
+scores.forEach(([name,rawScore])=>{
+ const score=Math.max(0,Math.min(rawScore,10));
+ total+=score;
+ const card=document.createElement("div");
+ card.className="card score-card";
+ card.innerHTML=`
+ <div style="flex:1">
+ <div class="label">${name}</div>
+ <div class="score-bar"><div style="width:${score*10}%"></div></div>
+ </div>
+ <div class="score-number">${score.toFixed(2)}</div>`;
+ scoreGrid.appendChild(card);
 });
 
-const finalScore=total/scores.length;
+document.getElementById("totalScore").textContent=(total/scores.length).toFixed(2)+"/10";
+document.getElementById("scoreCount").textContent=scores.length+" scoring criteria · Average of all criteria";
 
-document.getElementById("totalScore").textContent=
-    finalScore.toFixed(2)+"/10";
+/* DICE GAME */
+let rollsLeft=10;
+const diceNumber=document.getElementById("diceNumber");
+const rollsLeftText=document.getElementById("rollsLeft");
+const resultText=document.getElementById("resultText");
+const rollButton=document.getElementById("rollButton");
 
-
-/* =========================
-   DICE GAME
-   DO NOT CHANGE
-========================= */
-
-let rollsLeft = 10;
-
-const diceNumber =
-    document.getElementById("diceNumber");
-
-const rollsLeftText =
-    document.getElementById("rollsLeft");
-
-const resultText =
-    document.getElementById("resultText");
-
-const rollButton =
-    document.getElementById("rollButton");
-
-const diceItems = {
-
-    mythic:{
-        name:"🟣 Mythic!",
-        count:0,
-        needed:3
-    },
-
-    fame:{
-        name:"🪐 Saturnian Fame 2!",
-        count:0,
-        needed:1
-    },
-
-    prestige:{
-        name:"🔥 Total Prestige!",
-        count:0,
-        needed:2
-    },
-
-    pro:{
-        name:"🏆 Pro Rank!",
-        count:0,
-        needed:1
-    },
-
-    sirius:{
-        name:"🌟 Sirius Base Skin!",
-        count:0,
-        needed:2
-    },
-
-    p3:{
-        name:"🏅 Prestige 3!",
-        count:0,
-        needed:1
-    }
-
+const diceItems={
+ mythic:{name:"🟣 Mythic!",count:0,needed:3},
+ fame:{name:"🪐 Saturnian Fame 2!",count:0,needed:1},
+ prestige:{name:"🔥 Total Prestige!",count:0,needed:2},
+ pro:{name:"🏆 Pro Rank!",count:0,needed:1},
+ sirius:{name:"🌟 Sirius Base Skin!",count:0,needed:2},
+ p3:{name:"🏅 Prestige 3!",count:0,needed:1}
 };
 
-
 function getRandomItem(){
-
-    const random=Math.random()*100;
-
-    if(random<33.3333)
-        return "mythic";
-
-    if(random<43.3333)
-        return "fame";
-
-    if(random<66.3333)
-        return "prestige";
-
-    if(random<73.3333)
-        return "pro";
-
-    if(random<93.3333)
-        return "sirius";
-
-    return "p3";
+ const random=Math.random()*100;
+ if(random<33.3333)return"mythic";
+ if(random<43.3333)return"fame";
+ if(random<66.3333)return"prestige";
+ if(random<73.3333)return"pro";
+ if(random<93.3333)return"sirius";
+ return"p3";
 }
-
 
 function rollDice(){
+ if(rollsLeft<=0)return;
+ rollsLeft--;
+ diceNumber.textContent="🎲 "+(Math.floor(Math.random()*6)+1);
+ const itemKey=getRandomItem();
+ const item=diceItems[itemKey];
+ item.count++;
+ resultText.textContent="🎉 YOU GOT: "+item.name;
 
-    if(rollsLeft<=0)
-        return;
-
-    rollsLeft--;
-
-    const number=
-        Math.floor(Math.random()*6)+1;
-
-    diceNumber.textContent="🎲 "+number;
-
-    const itemKey=getRandomItem();
-
-    const item=diceItems[itemKey];
-
-    item.count++;
-
-    resultText.textContent=
-        "🎉 YOU GOT: "+item.name;
-
-    if(itemKey==="pro" && item.count===1){
-
-        const otherItems=[
-            "mythic",
-            "fame",
-            "prestige",
-            "sirius",
-            "p3"
-        ];
-
-        const bonusKey=
-            otherItems[
-                Math.floor(
-                    Math.random()*otherItems.length
-                )
-            ];
-
-        diceItems[bonusKey].count++;
-
-        resultText.textContent=
-            "🔥 PRO RANK! BONUS ITEM: "+
-            diceItems[bonusKey].name;
-    }
-
-    updateDiceGame();
+ if(itemKey==="pro"&&item.count===1){
+  const otherItems=["mythic","fame","prestige","sirius","p3"];
+  const bonusKey=otherItems[Math.floor(Math.random()*otherItems.length)];
+  diceItems[bonusKey].count++;
+  resultText.textContent="🔥 PRO RANK! BONUS ITEM: "+diceItems[bonusKey].name;
+ }
+ updateDiceGame();
 }
-
 
 function updateDiceGame(){
-
-    rollsLeftText.textContent=rollsLeft;
-
-    Object.keys(diceItems).forEach(key=>{
-
-        const item=diceItems[key];
-
-        const element=
-            document.getElementById("item-"+key);
-
-        const span=element.querySelector("span");
-
-        span.textContent=
-            item.count+" / "+item.needed;
-
-        if(item.count>=item.needed){
-
-            element.classList.add("done");
-
-        }
-
-    });
-
-    if(rollsLeft<=0){
-
-        rollButton.disabled=true;
-
-        checkWin();
-
-    }
+ rollsLeftText.textContent=rollsLeft;
+ Object.keys(diceItems).forEach(key=>{
+  const item=diceItems[key];
+  const element=document.getElementById("item-"+key);
+  element.querySelector("span").textContent=item.count+" / "+item.needed;
+  if(item.count>=item.needed)element.classList.add("done");
+  else element.classList.remove("done");
+ });
+ if(rollsLeft<=0){
+  rollButton.disabled=true;
+  checkWin();
+ }
 }
-
 
 function checkWin(){
-
-    const won=
-        Object.values(diceItems)
-        .every(item=>item.count>=item.needed);
-
-    if(won){
-
-        resultText.textContent=
-            "🏆 YOU COLLECTED EVERYTHING!";
-
-    }else{
-
-        resultText.textContent=
-            "🎲 Rolls finished! Try again next time.";
-
-    }
+ const won=Object.values(diceItems).every(item=>item.count>=item.needed);
+ resultText.textContent=won?"🏆 YOU COLLECTED EVERYTHING!":"🎲 Rolls finished! Try again next time.";
 }
-
 </script>
-
 </body>
 </html>
