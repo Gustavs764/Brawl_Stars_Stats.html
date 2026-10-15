@@ -31,6 +31,41 @@ h1{font-size:29px}h2{font-size:21px;margin-top:0}.muted,.small{color:var(--muted
 .collection-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}.collection-item:last-child{border-bottom:0}.item-name{overflow-wrap:anywhere}.item-status{white-space:nowrap;font-weight:bold}
 .meme{text-align:center;line-height:1.6}.emoji{font-size:42px}footer{border-top:1px solid var(--border);color:var(--muted);text-align:center;padding:22px 12px;font-size:12px}
 @media(max-width:500px){.logo{font-size:25px}main{padding:16px 10px 35px}.card{padding:14px}.value{font-size:23px}nav button{padding:10px 12px}}
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.image-card {
+    background: #141d32;
+    border: 1px solid #293753;
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.image-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffca28;
+}
+
+.image-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    display: block;
+    border-radius: 10px;
+}
+
+.image-card h3 {
+    margin: 14px 0 4px;
+    color: #ffca28;
+    font-size: 16px;
+}
 </style>
 </head>
 <body>
@@ -58,7 +93,56 @@ h1{font-size:29px}h2{font-size:21px;margin-top:0}.muted,.small{color:var(--muted
 <section class="section" id="scores"><h1>🏆 Account Scores</h1><p class="muted">17 kritēriji. Kopējais rezultāts ir visu kritēriju vidējais.</p>
 <div class="big-score"><div class="small">TOTAL ACCOUNT SCORE</div><div class="number" id="totalScore">--/10</div><div class="rating" id="rating">Aprēķina...</div><div class="progress"><div id="totalBar" style="width:0%"></div></div><p class="small" id="scoreDescription"></p></div><div class="grid" id="scoreGrid"></div>
 <div class="card panel"><h2>Rating Tiers</h2><div class="stat-row"><span>F Tier</span><strong>0.0–1.9</strong></div><div class="stat-row"><span>E Tier</span><strong>2.0–2.9</strong></div><div class="stat-row"><span>D Tier</span><strong>3.0–4.5</strong></div><div class="stat-row"><span>C Tier</span><strong>4.6–6.5</strong></div><div class="stat-row"><span>B Tier</span><strong>6.6–7.9</strong></div><div class="stat-row"><span>A Tier</span><strong>8.0–9.3</strong></div><div class="stat-row"><span>S Tier</span><strong>9.4–9.7</strong></div><div class="stat-row"><span>S+ Tier</span><strong>9.8–10.0</strong></div></div></section>
-<section class="section" id="images"><h1>🖼️ Images</h1><p class="muted">Konta attēlu sadaļa.</p><div class="grid"><div class="card meme"><div class="emoji">🏆</div><h3>Trophy Record</h3><p>94,479 trofejas</p></div><div class="card meme"><div class="emoji">✨</div><h3>Prestige Collection</h3><p>15,094 Prestige trofejas</p></div><div class="card meme"><div class="emoji">👑</div><h3>Club President</h3><p>Club King Gustavs</p></div></div></section>
+```html
+<section class="section" id="images">
+    <h1>🖼️ Account Images</h1>
+    <p class="muted">Gustavs Brawl Stars konta attēli.</p>
+
+    <div class="grid">
+
+        <div class="card meme">
+            <img
+                src="https://cdn.brawlytix.com/fame/solar2.webp"
+                alt="Solar Fame 2"
+                loading="lazy"
+                style="width:100%;height:220px;object-fit:contain;"
+            >
+            <h3>🌌 Solar Fame 2</h3>
+        </div>
+
+        <div class="card meme">
+            <img
+                src="https://cdn.brawlytix.com/assets/ranked/58000012.png"
+                alt="Ranked"
+                loading="lazy"
+                style="width:100%;height:220px;object-fit:contain;"
+            >
+            <h3>🏆 Ranked</h3>
+        </div>
+
+        <div class="card meme">
+            <img
+                src="https://cdn.brawlytix.com/skins/29001401.webp"
+                alt="Skin 29001401"
+                loading="lazy"
+                style="width:100%;height:220px;object-fit:contain;"
+            >
+            <h3>⭐ Skin 29001401</h3>
+        </div>
+
+        <div class="card meme">
+            <img
+                src="https://cdn.brawlytix.com/skins/29001481.webp"
+                alt="Skin 29001481"
+                loading="lazy"
+                style="width:100%;height:220px;object-fit:contain;"
+            >
+            <h3>✨ Skin 29001481</h3>
+        </div>
+
+    </div>
+</section>
+```
 <section class="section" id="dice">
 <h1>🎲 Dice Game</h1><p class="muted">Savāc visus nepieciešamos itemus 10 metienos. Punktu sistēmas nav!</p>
 <div class="two-col">
