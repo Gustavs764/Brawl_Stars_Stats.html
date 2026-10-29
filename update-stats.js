@@ -10,7 +10,7 @@ const path = require("node:path");
 const PLAYER_TAG = "#2QR28RLQYG";
 const OUTPUT_FILE = path.join(process.cwd(), "stats.json");
 
-const API_BASE = "https://bsproxy.royaleapi.dev/v1";
+const API_BASE = "https://api.brawlstars.com";
 
 async function fetchPlayer() {
   const apiKey = process.env.BRAWL_STARS_API_KEY;
