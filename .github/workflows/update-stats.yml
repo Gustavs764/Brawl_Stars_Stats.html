@@ -1,3 +1,4 @@
+
 name: Update Brawl Stars stats
 
 on:
@@ -14,10 +15,11 @@ concurrency:
 
 jobs:
   update:
+    name: Update player statistics
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout latest main branch
         uses: actions/checkout@v4
         with:
           ref: main
@@ -27,15 +29,25 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Fetch latest Brawl Stars player stats
-        run: node update-stats.js
+      - name: Verify required API secret
         env:
           BRAWL_STARS_API_KEY: ${{ secrets.BRAWL_STARS_API_KEY }}
+        run: |
+          if [ -z "$BRAWL_STARS_API_KEY" ]; then
+            echo "::error::GitHub Secret BRAWL_STARS_API_KEY is missing."
+            exit 1
+          fi
+          echo "API secret exists. Its value will not be displayed."
 
-      - name: Commit and push updated stats
+      - name: Fetch latest Brawl Stars player stats
+        env:
+          BRAWL_STARS_API_KEY: ${{ secrets.BRAWL_STARS_API_KEY }}
+        run: node update-stats.js
+
+      - name: Commit updated stats.json
         run: |
           if git diff --quiet -- stats.json; then
-            echo "stats.json nav izmaiņu."
+            echo "stats.json has no changes."
             exit 0
           fi
 
