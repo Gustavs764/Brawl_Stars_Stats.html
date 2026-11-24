@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gustavs Brawl Stars Stats v3.5</title>
+<title>Gustavs Brawl Stars Stats v3.6</title>
 
 <style>
 :root{
@@ -333,6 +333,21 @@ padding:22px 12px;
 font-size:12px;
 }
 
+
+.checker-input{
+display:block;
+width:100%;
+margin:7px 0 17px;
+padding:12px;
+background:#0d1425;
+color:var(--text);
+border:1px solid var(--border);
+border-radius:9px;
+font-size:16px;
+}
+.checker-input:focus{outline:2px solid var(--blue)}
+#accountChecker label{display:block;margin-top:10px}
+
 @media(max-width:500px){
 .logo{font-size:25px}
 main{padding:16px 10px 35px}
@@ -356,6 +371,7 @@ nav button{padding:10px 12px}
 <button class="active" onclick="showSection('home',this)">🏠 Home</button>
 <button onclick="showSection('stats',this)">📊 Account Stats</button>
 <button onclick="showSection('scores',this)">🏆 Scores</button>
+<button onclick="showSection('accountChecker',this)">⭐ Cik labs ir tavs konts?</button>
 <button onclick="showSection('images',this)">🖼️ Images</button>
 <button onclick="showSection('dice',this)">🎲 Dice Game</button>
 <button onclick="showSection('memes',this)">😂 Memes</button>
@@ -494,6 +510,79 @@ nav button{padding:10px 12px}
 <div class="stat-row"><span>A Tier</span><strong>8.0–9.3</strong></div>
 <div class="stat-row"><span>S Tier</span><strong>9.4–9.7</strong></div>
 <div class="stat-row"><span>S+ Tier</span><strong>9.8–10.0</strong></div>
+</div>
+</section>
+
+
+<!-- ACCOUNT CHECKER -->
+
+<section class="section" id="accountChecker">
+<h1>⭐ Cik labs ir tavs konts?</h1>
+<p class="muted">Ievadi sava konta datus — katrs kritērijs tiks pārvērsts punktos no 0 līdz 10, un beigās tiks aprēķināts vidējais score.</p>
+
+<div class="two-col">
+<div class="card">
+<h2>📊 Ievadi konta statistiku</h2>
+
+<label class="label" for="checkTrophies">🏆 Trophies</label>
+<input class="checker-input" id="checkTrophies" type="number" min="0" max="1000000" value="0">
+
+<label class="label" for="checkRank">🏅 Ranked Tier</label>
+<select class="checker-input" id="checkRank">
+<option value="0.1">Bronze I</option>
+<option value="0.25">Bronze II</option>
+<option value="0.5">Bronze III</option>
+<option value="0.75">Silver I</option>
+<option value="1">Silver II</option>
+<option value="1.25">Silver III</option>
+<option value="1.5">Gold I</option>
+<option value="2">Gold II</option>
+<option value="2.5">Gold III</option>
+<option value="3">Diamond I</option>
+<option value="3.5">Diamond II</option>
+<option value="4">Diamond III</option>
+<option value="4.5">Mythic I</option>
+<option value="5">Mythic II</option>
+<option value="5.5">Mythic III</option>
+<option value="6">Legendary I</option>
+<option value="6.8">Legendary II</option>
+<option value="7.5">Legendary III</option>
+<option value="8.3">Masters I</option>
+<option value="9.3">Masters II</option>
+<option value="10">Masters III</option>
+<option value="10">Pro</option>
+</select>
+
+<label class="label" for="checkElo">🏅 Ranked ELO</label>
+<input class="checker-input" id="checkElo" type="number" min="0" max="1000000" value="0">
+
+<label class="label" for="checkBrawler">⭐ Highest Trophy Brawler</label>
+<input class="checker-input" id="checkBrawler" type="number" min="0" max="1000000" value="0">
+
+<label class="label" for="checkPrestige">👑 Total Prestige</label>
+<input class="checker-input" id="checkPrestige" type="number" min="0" max="1000000" value="0">
+
+<label class="label" for="checkP2">✨ Prestige 2 Brawlers</label>
+<input class="checker-input" id="checkP2" type="number" min="0" max="1000000" value="0">
+
+<label class="label" for="checkStreak">🔥 Highest Win Streak</label>
+<input class="checker-input" id="checkStreak" type="number" min="0" max="1000000" value="0">
+
+<p class="small">Skaitliskajiem laukiem atļautais diapazons: 0–1 000 000. Ranked Tier izvēlies sarakstā.</p>
+<button class="action" id="resetChecker" type="button">RESET</button>
+</div>
+
+<div class="card">
+<h2>🏆 Tavs konta rezultāts</h2>
+<div class="big-score">
+<div class="small">AVERAGE ACCOUNT SCORE</div>
+<div class="number" id="checkerAverage">0.00/10</div>
+<div class="rating" id="checkerTier">F Tier</div>
+<div class="progress"><div id="checkerBar" style="width:0%"></div></div>
+<p class="small" id="checkerDescription">Vidējais rezultāts no 9 kritērijiem.</p>
+</div>
+<div id="checkerBreakdown"></div>
+</div>
 </div>
 </section>
 
@@ -1046,10 +1135,71 @@ showResult("🎲","Ready?","Collect all required items to win!","");
 updateGame();
 });
 
+
+// ACCOUNT CHECKER
+
+const checkerFields = [
+{ id:"checkTrophies", name:"Trophies", score:v=>Math.min(v/15000,10) },
+{ id:"checkRank", name:"Ranked Tier", score:v=>v, isSelect:true },
+{ id:"checkElo", name:"Ranked ELO", score:v=>Math.min(v/1000,10) },
+{ id:"checkBrawler", name:"Highest Trophy Brawler", score:v=>Math.min(v/300,10) },
+{ id:"checkPrestige", name:"Total Prestige", score:v=>Math.min(v/10,10) },
+{ id:"checkP2", name:"Prestige 2 Brawlers", score:v=>Math.min(v,10) },
+{ id:"checkStreak", name:"Highest Win Streak", score:v=>Math.min(v/5,10) }
+];
+
+function renderAccountChecker(){
+const results=[];
+checkerFields.forEach(field=>{
+const input=document.getElementById(field.id);
+let value=Number(input.value);
+if(!Number.isFinite(value)) value=0;
+if(field.isSelect){
+value=Math.max(0,Math.min(10,value));
+}else{
+value=Math.max(0,Math.min(1000000,value));
+}
+input.value=value;
+results.push({name:field.name,score:Math.max(0,Math.min(10,field.score(value)))});
+});
+
+const average=results.reduce((sum,item)=>sum+item.score,0)/results.length;
+document.getElementById("checkerAverage").textContent=average.toFixed(2)+"/10";
+document.getElementById("checkerTier").textContent=getRating(average);
+document.getElementById("checkerBar").style.width=(average*10)+"%";
+document.getElementById("checkerDescription").textContent=
+"Vidējais rezultāts no "+results.length+" kritērijiem.";
+
+const breakdown=document.getElementById("checkerBreakdown");
+breakdown.innerHTML="";
+results.forEach(item=>{
+const row=document.createElement("div");
+row.className="stat-row";
+const name=document.createElement("span");
+const score=document.createElement("strong");
+name.textContent=item.name;
+score.textContent=item.score.toFixed(2)+"/10";
+row.append(name,score);
+breakdown.appendChild(row);
+});
+}
+
+checkerFields.forEach(field=>{
+document.getElementById(field.id).addEventListener("input",renderAccountChecker);
+});
+
+document.getElementById("resetChecker").addEventListener("click",()=>{
+checkerFields.forEach(field=>{
+document.getElementById(field.id).value=field.isSelect?1:0;
+});
+renderAccountChecker();
+});
+
 // START
 
 resetCollection();
 renderScores();
+renderAccountChecker();
 updateGame();
 
 </script>
