@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gustavs Brawl Stars Stats v3.6</title>
+<title>Gustavs Brawl Stars Stats v3.5</title>
 
 <style>
 :root{
@@ -550,7 +550,7 @@ nav button{padding:10px 12px}
 <option value="8.3">Masters I</option>
 <option value="9.3">Masters II</option>
 <option value="10">Masters III</option>
-<option value="10">Pro</option>
+<option value="pro">Pro</option>
 </select>
 
 <label class="label" for="checkElo">🏅 Ranked ELO</label>
@@ -1140,7 +1140,7 @@ updateGame();
 
 const checkerFields = [
 { id:"checkTrophies", name:"Trophies", score:v=>Math.min(v/15000,10) },
-{ id:"checkRank", name:"Ranked Tier", score:v=>v, isSelect:true },
+{ id:"checkRank", name:"Ranked Tier", score:v=>v === "pro" ? 10 : Number(v), isSelect:true },
 { id:"checkElo", name:"Ranked ELO", score:v=>Math.min(v/1000,10) },
 { id:"checkBrawler", name:"Highest Trophy Brawler", score:v=>Math.min(v/300,10) },
 { id:"checkPrestige", name:"Total Prestige", score:v=>Math.min(v/10,10) },
@@ -1152,11 +1152,11 @@ function renderAccountChecker(){
 const results=[];
 checkerFields.forEach(field=>{
 const input=document.getElementById(field.id);
-let value=Number(input.value);
-if(!Number.isFinite(value)) value=0;
+let value=field.isSelect ? input.value : Number(input.value);
 if(field.isSelect){
-value=Math.max(0,Math.min(10,value));
+if(value !== "pro") value=Math.max(0,Math.min(10,Number(value)||0));
 }else{
+if(!Number.isFinite(value)) value=0;
 value=Math.max(0,Math.min(1000000,value));
 }
 input.value=value;
@@ -1190,7 +1190,7 @@ document.getElementById(field.id).addEventListener("input",renderAccountChecker)
 
 document.getElementById("resetChecker").addEventListener("click",()=>{
 checkerFields.forEach(field=>{
-document.getElementById(field.id).value=field.isSelect?1:0;
+document.getElementById(field.id).value=field.isSelect?"0.1":0;
 });
 renderAccountChecker();
 });
